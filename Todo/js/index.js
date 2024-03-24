@@ -67,11 +67,12 @@ input.addEventListener('keypress', (event) => {
         event.preventDefault();
         const task = input.value.trim()
         if (task !== '') {
-            const li = document.createElement('li')
-            li.setAttribute('class', 'list-goup-item')
-            li.innerHTML = task
-            list.append(li)
-            input.value = ''
+            todos.addTask(task).then((task) => {
+                renderTask(task)
+                input.value = ''
+                input.focus()
+            })
+
         }
     }
 
