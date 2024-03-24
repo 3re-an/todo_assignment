@@ -1,0 +1,9 @@
+GET http://127.0.0.1:3001
+
+### komentti
+POST http://127.0.0.1:3001/new HTTP/1.1
+Content-Type: application/json
+
+{
+    "description": "Test from REST Client"
+}
