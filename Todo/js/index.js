@@ -29,23 +29,23 @@ input.disabled = true
 const renderTask = (task) => {
     const li = document.createElement('li')
     li.setAttribute('class','list-group-item')
-    li.innerHTML = task
+    li.innerHTML = task.getText()
     list.append(li)
 }
 
-const getTask = async () => {
-    try {
-        const response = await fetch(BACKEND_ROOT_URL)
-        const json = await response.json()
-        json.forEach(task => {
-            renderTask(task.description)
+const getTask = () => {
+    todos.getTasks().then((tasks) => {
+        tasks.forEach(task => {
+            renderTask(task)
         })
+
         input.disabled = false
-    } catch (error) {
-        alert("Error retrieving tasks " + error.message)
-    }
+    }) .catch((error) => {
+        alert(error)
+    })
 }
 
+//previous alert("Error getting tasks" + error.message)
 const saveTask = async (task) => {
   try {
     const json = JSON.stringify({description: task})
